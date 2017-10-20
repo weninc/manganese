@@ -165,7 +165,7 @@ void generate_pulse(const Pulse& pulse, const Parameters& para, mt19937& gen, ve
 
 int main(int argc, char* argv[])
 {
-    if (argc != 2) {
+    if (argc != 3) {
         cout<<"Wrong number of arguments!"<<endl;
         return -1;
     }
@@ -189,11 +189,11 @@ int main(int argc, char* argv[])
 
     Pulse pulse;
     pulse.rfocus = 150.0e-9 / AU_TO_METERS;
-    pulse.pulse_duration = 20.0e-15 / AU_TO_SECONDS;
+    pulse.pulse_duration = 30.0e-15 / AU_TO_SECONDS;
     pulse.bandwidth = 30.0 / 27.211;
-    pulse.nph = 2.0e12; //atof(argv[2]); //1.0e+11;
+    pulse.nph = atof(argv[2]);
     cout<<"nph:  "<<pulse.nph<<endl;
-    pulse.rayleigh_length = 20.0e-6 / AU_TO_METERS;
+    pulse.rayleigh_length = 10.0e-6 / AU_TO_METERS;
     pulse.type = sase;
     pulse.pshape = flattop;
 
@@ -242,12 +242,12 @@ int main(int argc, char* argv[])
     atom.auger2p = 0.32 / 27.211;
     atom.sum_gamma_rad = 0.35 / 27.211; // sum of all gamma_rad
 
-    atom.sigma1s = 2.0460e-20*1.0e-4 / (AU_TO_METERS*AU_TO_METERS);
+    atom.sigma1s = 3.5e-20*1.0e-4 / (AU_TO_METERS*AU_TO_METERS);
 
     // Mn 2p photo-ionization cross section
     // atom.sigma2p = 1.8762e-21
 
-    atom.attenuation_solution = AU_TO_METERS / 12.0e-6;
+    atom.attenuation_solution = AU_TO_METERS / 38.8e-6;
 
     // reabsorption of Mn K-alpha emission from Cl 1s shell
     atom.reabsorption =  1.3505e-20*1.0e-4 / (AU_TO_METERS*AU_TO_METERS);
